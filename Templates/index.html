@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crop Yield Predictor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            glass: 'rgba(255, 255, 255, 0.1)',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      background-image: linear-gradient(to right top, #1e3a8a, #3b82f6, #6366f1, #8b5cf6);
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body class="font-inter flex items-center justify-center py-12 px-4">
+
+  <div class="bg-glass border border-white/20 backdrop-blur-sm shadow-2xl rounded-3xl p-10 w-full max-w-4xl transition transform hover:-translate-y-1 hover:shadow-indigo-500/40 duration-300">
+
+    <!-- Title -->
+    <div class="text-center mb-10">
+      <h1 class="text-4xl font-extrabold text-white drop-shadow-lg">🌾 Crop Yield Predictor</h1>
+      <p class="text-indigo-100 mt-2 text-sm">Enter details below to predict yield using AI</p>
+    </div>
+
+    <!-- Form -->
+    <form action="/predict" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-6 text-white">
+      <!-- Form Fields Here (same as before) -->
+      <div>
+        <label class="block text-sm font-medium mb-1">📅 Year</label>
+        <input type="number" name="Year" value="2013" step="any"
+          class="w-full rounded-xl p-3 bg-white/20 text-white placeholder-white/80 shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">☔ Avg Rainfall (mm/year)</label>
+        <input type="number" name="average_rain_fall_mm_per_year" step="any"
+          class="w-full rounded-xl p-3 bg-white/20 text-white placeholder-white/80 shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">🧪 Pesticides (tonnes)</label>
+        <input type="number" name="pesticides_tonnes" step="any"
+          class="w-full rounded-xl p-3 bg-white/20 text-white placeholder-white/80 shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">🔥 Avg Temperature (°C)</label>
+        <input type="number" name="avg_temp" step="any"
+          class="w-full rounded-xl p-3 bg-white/20 text-white placeholder-white/80 shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">🌐 Area (Hectares)</label>
+        <input type="text" name="Area"
+          class="w-full rounded-xl p-3 bg-white/20 text-white placeholder-white/80 shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">🌿 Crop Item</label>
+        <input type="text" name="Item"
+          class="w-full rounded-xl p-3 bg-white/20 text-white placeholder-white/80 shadow-inner focus:outline-none focus:ring-2 focus:ring-indigo-400" />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="md:col-span-2 mt-6">
+        <button type="submit"
+          class="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-xl shadow-lg transition duration-300 hover:shadow-indigo-500/40">
+          🚀 Predict Yield
+        </button>
+      </div>
+      <div id="resultBox" class="mt-8 hidden bg-white/20 p-6 rounded-xl text-yellow-200 font-semibold text-xl text-center">
+        <p class="mb-4">
+          Predicted Yield:
+          <span id="predictionValue" class="text-2xl font-bold text-green-400"></span>
+        </p>
+      </div>
+    </form>
+
+    {% if prediction %}
+    <div class="mt-6 p-6 bg-glass text-center rounded-xl text-yellow-200 font-semibold text-xl">
+      <p class="mb-4">Predicted Yield:</p>
+      <span class="text-3xl font-bold text-green-400">{{ prediction }}</span>
+      <p class="text-white mt-2 text-sm">Based on rainfall, temperature, pesticides, area, and crop type.</p>
+    </div>
+    {% endif %}
+    {% if error %}
+  <div class="mt-6 p-4 bg-red-500/20 text-center rounded-xl text-red-200 font-medium text-lg">
+    {{ error }}
+  </div>
+{% endif %}
+
+  </div>
+  </div>
+
+</body>
+</html>
