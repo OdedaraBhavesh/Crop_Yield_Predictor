@@ -19,39 +19,39 @@
     <!-- Form -->
     <form action="/predict" method="post" class="form-grid">
       <!-- Year -->
-      <div>
+      <div class="form-group">
         <label class="form-label">📅 Year</label>
-        <input type="number" name="Year" value="2013" step="any" class="form-input" placeholder="e.g. 2013" />
+        <input type="number" name="Year" value="2013" step="any" class="form-input" required />
       </div>
 
       <!-- Rainfall -->
-      <div>
+      <div class="form-group">
         <label class="form-label">☔ Avg Rainfall (mm/year)</label>
-        <input type="number" name="average_rain_fall_mm_per_year" step="any" class="form-input" placeholder="e.g. 1200" />
+        <input type="number" name="average_rain_fall_mm_per_year" step="any" class="form-input" required />
       </div>
 
       <!-- Pesticides -->
-      <div>
+      <div class="form-group">
         <label class="form-label">🧪 Pesticides (tonnes)</label>
-        <input type="number" name="pesticides_tonnes" step="any" class="form-input" placeholder="e.g. 100" />
+        <input type="number" name="pesticides_tonnes" step="any" class="form-input" required />
       </div>
 
       <!-- Temperature -->
-      <div>
+      <div class="form-group">
         <label class="form-label">🔥 Avg Temperature (°C)</label>
-        <input type="number" name="avg_temp" step="any" class="form-input" placeholder="e.g. 25" />
+        <input type="number" name="avg_temp" step="any" class="form-input" required />
       </div>
 
       <!-- Area -->
-      <div>
+      <div class="form-group">
         <label class="form-label">🌐 Area (Hectares)</label>
-        <input type="text" name="Area" class="form-input" placeholder="e.g. Maharashtra" />
+        <input type="text" name="Area" class="form-input" placeholder="e.g. Maharashtra" required />
       </div>
 
       <!-- Crop Item -->
-      <div>
+      <div class="form-group">
         <label class="form-label">🌿 Crop Item</label>
-        <input type="text" name="Item" class="form-input" placeholder="e.g. Rice" />
+        <input type="text" name="Item" class="form-input" placeholder="e.g. Rice" required />
       </div>
 
       <!-- Submit Button -->
@@ -59,19 +59,16 @@
         <button type="submit" class="submit-btn">🚀 Predict Yield</button>
       </div>
 
-      <!-- Result Box (shown via JS or server) -->
-      <div id="resultBox" class="result-box">
-        <p>
-          Predicted Yield:
-          <span id="predictionValue" class="prediction-value"></span>
-        </p>
+      <!-- Result Box -->
+      <div id="resultBox" class="result-box hidden">
+        <p>Predicted Yield: <span id="predictionValue" class="prediction-value"></span></p>
       </div>
     </form>
 
-    <!-- Server-side prediction (from template engine like Jinja) -->
+    <!-- Server Results -->
     {% if prediction %}
     <div class="prediction-result">
-      <p>Predicted Yield:</p>
+      <p><strong>Predicted Yield:</strong></p>
       <span class="prediction-text">{{ prediction }}</span>
       <p class="info-text">Based on rainfall, temperature, pesticides, area, and crop type.</p>
     </div>
