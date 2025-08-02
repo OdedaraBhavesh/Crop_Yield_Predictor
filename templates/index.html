@@ -3,87 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crop Yield Predictor</title>
+  <title>Crop Yield Predictor | AgriAI</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <div class="container">
-    <!-- Title -->
-    <div class="title">
-      <h1>🌾 Crop Yield Predictor</h1>
-      <p>Enter details below to predict yield using AI</p>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">🌾 Agri<span>AI</span></div>
+      <nav class="nav">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#predict" class="nav-link">Predict</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Form -->
-    <form action="/predict" method="post" class="form-grid">
-      <!-- Year -->
-      <div>
-        <label class="form-label">📅 Year</label>
-        <input type="number" name="Year" value="2013" step="any" class="form-input" placeholder="e.g. 2013" />
-      </div>
+  <!-- Main Content -->
+  <main class="main">
 
-      <!-- Rainfall -->
-      <div>
-        <label class="form-label">☔ Avg Rainfall (mm/year)</label>
-        <input type="number" name="average_rain_fall_mm_per_year" step="any" class="form-input" placeholder="e.g. 1200" />
-      </div>
-
-      <!-- Pesticides -->
-      <div>
-        <label class="form-label">🧪 Pesticides (tonnes)</label>
-        <input type="number" name="pesticides_tonnes" step="any" class="form-input" placeholder="e.g. 100" />
-      </div>
-
-      <!-- Temperature -->
-      <div>
-        <label class="form-label">🔥 Avg Temperature (°C)</label>
-        <input type="number" name="avg_temp" step="any" class="form-input" placeholder="e.g. 25" />
-      </div>
-
-      <!-- Area -->
-      <div>
-        <label class="form-label">🌐 Area (Hectares)</label>
-        <input type="text" name="Area" class="form-input" placeholder="e.g. Maharashtra" />
-      </div>
-
-      <!-- Crop Item -->
-      <div>
-        <label class="form-label">🌿 Crop Item</label>
-        <input type="text" name="Item" class="form-input" placeholder="e.g. Rice" />
-      </div>
-
-      <!-- Submit Button -->
-      <div class="form-submit">
-        <button type="submit" class="submit-btn">🚀 Predict Yield</button>
-      </div>
-
-      <!-- Result Box (shown via JS or server) -->
-      <div id="resultBox" class="result-box">
-        <p>
-          Predicted Yield:
-          <span id="predictionValue" class="prediction-value"></span>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <h1 class="hero-title">Predict Crop Yield with Machine Learning</h1>
+        <p class="hero-subtitle">
+          Enter your farm details and get an accurate yield prediction in seconds. 
+          Built for modern agriculture using AI.
         </p>
       </div>
-    </form>
+    </section>
 
-    <!-- Server-side prediction (from template engine like Jinja) -->
-    {% if prediction %}
-    <div class="prediction-result">
-      <p>Predicted Yield:</p>
-      <span class="prediction-text">{{ prediction }}</span>
-      <p class="info-text">Based on rainfall, temperature, pesticides, area, and crop type.</p>
+    <!-- Prediction Form -->
+    <section id="predict" class="predict-section">
+      <div class="container">
+        <div class="form-card">
+          <h2 class="form-title">🌾 Crop Yield Predictor</h2>
+          <p class="form-subtitle">Enter your farm details to get an AI-powered prediction</p>
+
+          <form action="/predict" method="post" class="form-grid">
+            <div class="form-group">
+              <label class="form-label">📅 Year</label>
+              <input type="number" name="Year" value="2013" step="any" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">☔ Avg Rainfall (mm/year)</label>
+              <input type="number" name="average_rain_fall_mm_per_year" step="any" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">🧪 Pesticides (tonnes)</label>
+              <input type="number" name="pesticides_tonnes" step="any" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">🔥 Avg Temperature (°C)</label>
+              <input type="number" name="avg_temp" step="any" class="form-input" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">🌐 Area (Hectares)</label>
+              <input type="text" name="Area" class="form-input" placeholder="e.g. Punjab" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">🌿 Crop Item</label>
+              <input type="text" name="Item" class="form-input" placeholder="e.g. Wheat" required />
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="submit-btn">🚀 Predict Yield</button>
+            </div>
+          </form>
+
+          <!-- Prediction Result (Server-Side) -->
+          {% if prediction %}
+          <div class="prediction-result">
+            <p><strong>Predicted Yield:</strong></p>
+            <span class="prediction-value">{{ prediction }}</span>
+            <p class="info-text">Based on rainfall, temperature, pesticides, area, and crop type.</p>
+          </div>
+          {% endif %}
+
+          {% if error %}
+          <div class="error-message">
+            {{ error }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <h2 class="section-title">About This Tool</h2>
+        <p class="about-text">
+          This AI-powered predictor uses historical agricultural data to estimate crop yields 
+          based on climate, soil inputs, and farming practices. It helps farmers and planners 
+          make informed decisions for better harvests.
+        </p>
+        <p class="about-text">
+          Data sources: FAO, World Bank, National Agricultural Statistics.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 AgriAI. Empowering farmers with smart technology.</p>
     </div>
-    {% endif %}
-
-    {% if error %}
-    <div class="error-message">
-      {{ error }}
-    </div>
-    {% endif %}
-
-  </div>
+  </footer>
 
 </body>
 </html>
