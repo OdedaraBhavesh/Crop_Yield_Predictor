@@ -1,0 +1,167 @@
+/* Global styles */
+body {
+  font-family: 'Inter', sans-serif;
+  background-image: linear-gradient(to right top, #1e3a8a, #3b82f6, #6366f1, #8b5cf6);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main container */
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 72rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px rgba(79, 70, 229, 0.4);
+}
+
+/* Title */
+.title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.title h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.title p {
+  color: #e0e7ff;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Form layout */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Form labels */
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: white;
+}
+
+/* Input fields */
+.form-input {
+  width: 100%;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 1rem;
+  border: none;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 141, 245, 0.4);
+}
+
+/* Submit button */
+.submit-btn {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.4);
+}
+
+/* Result box */
+.result-box {
+  margin-top: 2rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  color: #fde047;
+  font-weight: 600;
+  font-size: 1.25rem;
+  display: none;
+}
+
+.result-box .prediction-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4ade80;
+}
+
+/* Success message from backend */
+.prediction-result {
+  margin-top: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  text-align: center;
+  color: #fde047;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.prediction-result .prediction-text {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #4ade80;
+}
+
+.prediction-result .info-text {
+  color: white;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+/* Error message */
+.error-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: rgba(239, 68, 68, 0.2);
+  border-radius: 0.75rem;
+  text-align: center;
+  color: #fecaca;
+  font-weight: 500;
+  font-size: 1.125rem;
+}
